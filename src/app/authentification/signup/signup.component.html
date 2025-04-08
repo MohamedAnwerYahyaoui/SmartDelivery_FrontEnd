@@ -4,52 +4,91 @@
       <div class="w-full lg:w-1/2 flex items-center justify-center p-8">
         <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
           <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">Create Account</h1>
-            <p class="text-gray-600">Start managing your projects professionally</p>
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Create Account, Join Our Platform</h1>
+            <p class="text-gray-600">Transform your Restaurant management experience</p>
           </div>
   
-          <form class="space-y-6">
+          <form [formGroup]="clientForm" (ngSubmit)="onClientSubmit()" class="space-y-6">
+            <!-- Username Field -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+              <input formControlName="username" type="text"
+                     class="w-full px-4 py-3 rounded-lg border-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+                     [class.border-red-500]="clientForm.get('username')?.invalid && clientForm.get('username')?.touched">
+              <div *ngIf="clientForm.get('username')?.touched && clientForm.get('username')?.invalid" 
+                   class="text-red-600 text-sm mt-1">
+                <span *ngIf="clientForm.get('username')?.errors?.['required']">⚠ Username is required</span>
+                <span *ngIf="clientForm.get('username')?.errors?.['minlength']">
+                  ⚠ Minimum 3 characters required
+                </span>
+              </div>
+            </div>
+          
+            <!-- Name Fields Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- First Name -->
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                <input type="text" required 
-                       class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
+                <input formControlName="firstName" type="text"
+                       class="w-full px-4 py-3 rounded-lg border-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+                       [class.border-red-500]="clientForm.get('firstName')?.invalid && clientForm.get('firstName')?.touched">
+                <div *ngIf="clientForm.get('firstName')?.touched && clientForm.get('firstName')?.invalid" 
+                     class="text-red-600 text-sm mt-1">
+                  <span>⚠ First name is required</span>
+                </div>
               </div>
+          
+              <!-- Last Name -->
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                <input type="text" required 
-                       class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
+                <input formControlName="lastName" type="text"
+                       class="w-full px-4 py-3 rounded-lg border-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+                       [class.border-red-500]="clientForm.get('lastName')?.invalid && clientForm.get('lastName')?.touched">
+                <div *ngIf="clientForm.get('lastName')?.touched && clientForm.get('lastName')?.invalid" 
+                     class="text-red-600 text-sm mt-1">
+                  <span>⚠ Last name is required</span>
+                </div>
               </div>
             </div>
-  
+          
+            <!-- Email Field -->
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-              <input type="email" required 
-                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
+              <input formControlName="email" type="email"
+                     class="w-full px-4 py-3 rounded-lg border-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+                     [class.border-red-500]="clientForm.get('email')?.invalid && clientForm.get('email')?.touched">
+              <div *ngIf="clientForm.get('email')?.touched && clientForm.get('email')?.invalid" 
+                   class="text-red-600 text-sm mt-1">
+                <span *ngIf="clientForm.get('email')?.errors?.['required']">⚠ Email is required</span>
+                <span *ngIf="clientForm.get('email')?.errors?.['email']">⚠ Please enter a valid email</span>
+              </div>
             </div>
-  
+          
+            <!-- Password Field -->
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
               <div class="relative">
-                <input type="password" required 
-                       class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
-                <button type="button" class="absolute right-3 top-3 text-gray-500 hover:text-blue-600">
-                  
+                <input [type]="showPassword ? 'text' : 'password'" formControlName="password"
+                       class="w-full px-4 py-3 rounded-lg border-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all pr-12"
+                       [class.border-red-500]="clientForm.get('password')?.invalid && clientForm.get('password')?.touched">
+                <button type="button" (click)="showPassword = !showPassword"
+                        class="absolute right-3 top-3 text-gray-500 hover:text-blue-600 transition-colors">
+                  {{ showPassword ? '👁️' : '👁' }}
                 </button>
               </div>
+              <div *ngIf="clientForm.get('password')?.touched && clientForm.get('password')?.invalid" 
+                   class="text-red-600 text-sm mt-1">
+                <span *ngIf="clientForm.get('password')?.errors?.['required']">⚠ Password is required</span>
+                <span *ngIf="clientForm.get('password')?.errors?.['minlength']">
+                  ⚠ Minimum 8 characters required
+                </span>
+              </div>
             </div>
-  
-            <div class="flex items-center">
-              <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-              <label class="ml-2 text-sm text-gray-600">
-                I agree to the <a routerLink="/signup" class="text-blue-600 hover:text-blue-800">Terms of Service</a>
-              </label>
-            </div>
-  
-            <button type="submit" 
-                    routerLink="/welcome"
+          
+            <!-- Submit Button -->
+            <button type="submit" [disabled]="clientForm.invalid"
                     class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition 
-                           focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                           focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed">
               Create Account
             </button>
           </form>
@@ -65,11 +104,10 @@
   
       <!-- Right Side: Image -->
       <div class="hidden lg:block w-1/2 bg-cover bg-center" 
-           style="background-image: url('assets/img/1.jpeg')">
+           style="background-image: url('assets/img/3.jpg')">
         <div class="bg-black/30 h-full flex items-center justify-center">
           <div class="text-white text-center p-8">
-            <h2 class="text-4xl font-bold mb-4">Join Our Platform</h2>
-            <p class="text-xl">Transform your Restaurant management experience</p>
+           
           </div>
         </div>
       </div>
