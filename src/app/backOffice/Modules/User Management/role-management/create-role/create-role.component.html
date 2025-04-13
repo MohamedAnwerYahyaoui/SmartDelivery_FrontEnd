@@ -1,0 +1,52 @@
+<main id="main" class="main">
+    <!-- role-create.component.html -->
+<div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-6">Create New Role</h2>
+    
+    <form [formGroup]="roleForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium mb-1">Role Name</label>
+        <input 
+          formControlName="roleName"
+          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+        >
+        <div *ngIf="roleForm.get('roleName')?.invalid && roleForm.get('roleName')?.touched" 
+             class="text-red-500 text-sm">
+          <div *ngIf="roleForm.get('roleName')?.errors?.['required']">
+            Role name is required
+          </div>
+          <div *ngIf="roleForm.get('roleName')?.errors?.['minlength']">
+            Minimum 3 characters required
+          </div>
+        </div>
+      </div>
+  
+      <div>
+        <label class="block text-sm font-medium mb-1">Description</label>
+        <textarea 
+          formControlName="description"
+          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+        ></textarea>
+      </div>
+  
+      <div *ngIf="errorMessage" class="text-red-500">{{ errorMessage }}</div>
+  
+      <div class="flex gap-4">
+        <button 
+          type="button" 
+          routerLink="/dashboard/user/rolesList"
+          class="px-4 py-2 border rounded-lg hover:bg-gray-50"
+        >
+          Cancel
+        </button>
+        <button 
+          type="submit" 
+          [disabled]="roleForm.invalid"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400"
+        >
+          Create Role
+        </button>
+      </div>
+    </form>
+  </div>
+</main>

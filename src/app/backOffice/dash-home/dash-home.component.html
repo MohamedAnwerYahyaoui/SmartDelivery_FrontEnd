@@ -1,0 +1,181 @@
+<section class="bg-gray-100">
+    <!-- Dashboard Container -->
+    <div class="min-h-screen flex">
+        <!-- Sidebar -->
+        <aside class="bg-white w-64 shadow-lg fixed h-full">
+            <div class="p-4">
+                <h2 class="text-2xl font-bold text-orange-600 mb-8">Smart Delivery</h2>
+                <nav>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="#" class="flex items-center p-2 text-gray-700 bg-orange-100 rounded-lg">
+                                <i class="fas fa-home mr-3"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center p-2 text-gray-600 hover:bg-orange-50 rounded-lg">
+                                <i class="fas fa-shopping-bag mr-3"></i>
+                                Orders
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center p-2 text-gray-600 hover:bg-orange-50 rounded-lg">
+                                <i class="fas fa-heart mr-3"></i>
+                                Favorites
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center p-2 text-gray-600 hover:bg-orange-50 rounded-lg">
+                                <i class="fas fa-map-marker-alt mr-3"></i>
+                                Addresses
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center p-2 text-gray-600 hover:bg-orange-50 rounded-lg">
+                                <i class="fas fa-user mr-3"></i>
+                                Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/signin" class="flex items-center p-2 text-gray-600 hover:bg-orange-50 rounded-lg">
+                                <i class="fas fa-sign-out-alt mr-3"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="ml-64 flex-1 p-8">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h1 class="text-2xl font-bold">Welcome back !</h1>
+                    <p class="text-gray-600">Here's your recent activity</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 text-gray-600 hover:bg-gray-100 rounded-full">
+                        <i class="fas fa-bell text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500">Ongoing Orders</p>
+                            <p class="text-2xl font-bold">2</p>
+                        </div>
+                        <i class="fas fa-truck text-3xl text-orange-600"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500">Total Orders</p>
+                            <p class="text-2xl font-bold">47</p>
+                        </div>
+                        <i class="fas fa-shopping-bag text-3xl text-orange-600"></i>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500">Favorite Restaurants</p>
+                            <p class="text-2xl font-bold">8</p>
+                        </div>
+                        <i class="fas fa-heart text-3xl text-orange-600"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Orders Section -->
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+                <h2 class="text-xl font-bold mb-4">Active Orders</h2>
+                <div class="space-y-4">
+                    <!-- Order Item -->
+                    <div class="flex items-center justify-between p-4 border rounded-lg">
+                        <div class="flex items-center space-x-4">
+                            <img src="assets/img/1.jpeg" class="w-16 h-16 rounded-lg">
+                            <div>
+                                <h3 class="font-semibold">Burger Palace</h3>
+                                <p class="text-gray-600 text-sm">Order #1234 • $24.99</p>
+                                <div class="flex items-center text-sm text-orange-600">
+                                    <i class="fas fa-clock mr-2"></i>
+                                    <span>Estimated delivery in 25 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="px-4 py-2 bg-orange-100 text-orange-600 rounded-lg">
+                            Track Order
+                        </button>
+                    </div>
+
+                    <!-- Add more order items -->
+                </div>
+            </div>
+
+            <!-- Recent Orders Table -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <h2 class="text-xl font-bold mb-4">Order History</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="text-left text-gray-500 border-b">
+                                <th class="pb-3">Order ID</th>
+                                <th class="pb-3">Restaurant</th>
+                                <th class="pb-3">Date</th>
+                                <th class="pb-3">Amount</th>
+                                <th class="pb-3">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="py-4">#1228</td>
+                                <td>Pizza Heaven</td>
+                                <td>2023-07-20</td>
+                                <td>$32.50</td>
+                                <td>
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                                        Delivered
+                                    </span>
+                                </td>
+                            </tr>
+                            <!-- Add more table rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Restaurant Suggestions -->
+            <div class="mt-8">
+                <h2 class="text-xl font-bold mb-4">Recommended Restaurants</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Restaurant Card -->
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                        <img src="assets/img/1.jpeg" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-bold">Sushi Master</h3>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">4.8★</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-2">Japanese • Sushi • Asian</p>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-clock mr-2"></i>
+                                <span>25-35 min</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more restaurant cards -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
