@@ -1,0 +1,52 @@
+<main id="main" class="main">
+
+<div class="form-wrapper">
+  <div class="form-card">
+    <h2 class="text-center mb-4">{{ isEditMode ? 'Edit Commande' : 'Create Commande' }}</h2>
+
+    <form (ngSubmit)="saveCommande()">
+      <div class="form-group mb-3">
+        <label for="montantTotal">Total Amount</label>
+        <input
+          type="number"
+          class="form-control"
+          id="montantTotal"
+          [(ngModel)]="commande.mantantTotal"
+          name="montantTotal"
+          required
+        />
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="dateLiv">Delivery Date</label>
+        <input
+          type="date"
+          class="form-control"
+          id="dateLiv"
+          [(ngModel)]="commande.dateLiv"
+          name="dateLiv"
+          required
+        />
+      </div>
+
+      <div class="form-group mb-4">
+        <label for="status">Status</label>
+        <select
+          class="form-control"
+          id="status"
+          [(ngModel)]="commande.status"
+          name="status"
+          required
+        >
+          <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+        </select>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-success w-50 me-2">{{ isEditMode ? 'Update' : 'Create' }}</button>
+        <button type="button" class="btn btn-secondary w-50" (click)="cancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+</main>

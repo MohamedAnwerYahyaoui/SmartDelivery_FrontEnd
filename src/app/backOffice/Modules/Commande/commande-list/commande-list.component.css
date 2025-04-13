@@ -1,0 +1,16 @@
+.container {
+    padding: 20px;
+  }
+  
+  .ml-2 {
+    margin-left: 10px;
+  }
+  
+  .alert {
+    margin-bottom: 20px;
+  }
+  
+  button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }

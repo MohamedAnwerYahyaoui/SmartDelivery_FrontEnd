@@ -1,0 +1,37 @@
+<main id="main" class="main">
+
+<div class="container">
+    <h2>Commandes</h2>
+  
+    <!-- Display error message if any -->
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
+  
+    <button class="btn btn-primary mb-3" (click)="navigateToCreate()">Add New Commande</button>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Total Amount</th>
+          <th>Delivery Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let commande of commandes">
+          <td>{{ commande.idCommande ?? 'N/A' }}</td>
+          <td>{{ commande.mantantTotal }}</td>
+          <td>{{ commande.dateLiv | date }}</td>
+          <td>{{ commande.status }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning" [disabled]="commande.idCommande === undefined" (click)="navigateToEdit(commande.idCommande)">Edit</button>
+            <button class="btn btn-sm btn-danger ml-2" [disabled]="commande.idCommande === undefined" (click)="deleteCommande(commande.idCommande)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
