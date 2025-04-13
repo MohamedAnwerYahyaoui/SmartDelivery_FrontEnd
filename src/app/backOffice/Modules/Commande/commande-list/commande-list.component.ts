@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Commande, Status } from '../models/Commande.model';
 import { CommandeService } from '../commande.service';
 import { Router } from '@angular/router';
-
+import { ChartConfiguration, ChartType, ChartData, ChartDataset } from 'chart.js';  // Ajuster l'importation
 @Component({
   selector: 'app-commande-list',
   templateUrl: './commande-list.component.html',
@@ -13,11 +13,25 @@ export class CommandeListComponent implements OnInit {
   selectedCommande: Commande | null = null;
   status = Status;
   errorMessage: string | null = null;
+  totalCommandes: number = 0;
+  totalMontant: number = 0;
+  statusCount: { [key: string]: number } = {};
+
+  // Graphique de statistiques de statut
+  pieChartLabels: string[] = [];
+  pieChartData: ChartData<'pie'> = {
+    labels: [],
+    datasets: [{ data: [] }]
+  };
+  pieChartType: ChartType = 'pie';
 
   constructor(private commandeService: CommandeService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadCommandes();
+  }
+  trackById(index: number, commande: any): number {
+    return commande.idCommande;
   }
 
   loadCommandes(): void {
@@ -25,12 +39,28 @@ export class CommandeListComponent implements OnInit {
       next: (data) => {
         this.commandes = data;
         this.errorMessage = null;
+
+        this.totalCommandes = data.length;
+        this.totalMontant = data.reduce((sum, c) => sum + (c.mantantTotal || 0), 0);
+
+        this.statusCount = {};
+        for (const cmd of data) {
+          const status = cmd.status || 'Inconnu';
+          this.statusCount[status] = (this.statusCount[status] || 0) + 1;
+        }
+
+        // Mise à jour des données pour le graphique
+        this.updateChartData();
       },
       error: (err) => {
         this.errorMessage = 'Failed to load commandes. Please try again later.';
         console.error('Failed to load commandes:', err);
       }
     });
+  }
+  updateChartData(): void {
+    this.pieChartLabels = Object.keys(this.statusCount);
+    this.pieChartData.datasets[0].data = Object.values(this.statusCount);  // Mettre les valeurs des statuts dans le dataset
   }
 
   deleteCommande(id: number | undefined): void {
@@ -90,5 +120,15 @@ export class CommandeListComponent implements OnInit {
     });
   }
   
-  
-}
+  getStatusClass(status: string): string {
+    switch (status) {
+      case 'Pending':
+        return 'badge-warning'; // Exemple de classe pour statut 'Pending'
+      case 'Completed':
+        return 'badge-success'; // Exemple de classe pour statut 'Completed'
+      case 'Cancelled':
+        return 'badge-danger'; // Exemple de classe pour statut 'Cancelled'
+      default:
+        return 'badge-secondary'; // Classe par défaut
+    }
+  }}

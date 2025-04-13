@@ -34,6 +34,7 @@ import { AuthInterceptorService } from './authentification/services/auth-interce
 import { AddClientComponent } from './backOffice/Modules/User Management/add-client/add-client.component';
 import { CommandeListComponent } from 'src/app/backOffice/Modules/Commande/commande-list/commande-list.component'; 
 import { CommandeFormComponent } from 'src/app/backOffice/Modules/Commande/commande-form/commande-form.component'; 
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -74,9 +75,8 @@ import { CommandeFormComponent } from 'src/app/backOffice/Modules/Commande/comma
     HttpClientModule,
     CommonModule,
     FormsModule,
-    
-    
-    RouterModule
+    RouterModule,
+    NgChartsModule
     
   ],
   providers: [

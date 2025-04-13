@@ -1,37 +1,78 @@
 <main id="main" class="main">
+  <div class="container">
+    <header class="header">
+      <h2>Liste des Commandes</h2>
+      <button class="btn btn-primary btn-add" (click)="navigateToCreate()">
+        <i class="bi bi-plus-circle"></i> Ajouter une Commande
+      </button>
+    </header>
 
-<div class="container">
-    <h2>Commandes</h2>
-  
-    <!-- Display error message if any -->
-    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert" aria-live="assertive">
       {{ errorMessage }}
     </div>
-  
-    <button class="btn btn-primary mb-3" (click)="navigateToCreate()">Add New Commande</button>
-  
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Total Amount</th>
-          <th>Delivery Date</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let commande of commandes">
-          <td>{{ commande.idCommande ?? 'N/A' }}</td>
-          <td>{{ commande.mantantTotal }}</td>
-          <td>{{ commande.dateLiv | date }}</td>
-          <td>{{ commande.status }}</td>
-          <td>
-            <button class="btn btn-sm btn-warning" [disabled]="commande.idCommande === undefined" (click)="navigateToEdit(commande.idCommande)">Edit</button>
-            <button class="btn btn-sm btn-danger ml-2" [disabled]="commande.idCommande === undefined" (click)="deleteCommande(commande.idCommande)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+
+    <!-- Statistics Chart -->
+    <section class="chart-section">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Statistiques des Statuts</h5>
+          <canvas baseChart
+                  [data]="pieChartData"
+                  [labels]="pieChartLabels"
+                  [type]="pieChartType"
+                  [legend]="true"
+                  aria-label="Graphique des statuts des commandes">
+          </canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Commande Table -->
+    <section class="table-section">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered" aria-describedby="commandesTable">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Montant Total</th>
+                  <th scope="col">Date de Livraison</th>
+                  <th scope="col">Statut</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let commande of commandes; trackBy: trackById">
+                  <td>{{ commande.idCommande ?? 'N/A' }}</td>
+                  <td>{{ commande.mantantTotal | currency }}</td>
+                  <td>{{ commande.dateLiv | date: 'dd/MM/yyyy' }}</td>
+                  <td>
+                    <span class="badge" [ngClass]="getStatusClass(commande.status)">
+                      {{ commande.status }}
+                    </span>
+                  </td>
+                  <td class="action-buttons">
+                    <button class="btn btn-warning btn-sm" 
+                            [disabled]="commande.idCommande === undefined" 
+                            (click)="navigateToEdit(commande.idCommande)"
+                            aria-label="Modifier la commande">
+                      <i class="bi bi-pencil"></i> Modifier
+                    </button>
+                    <button class="btn btn-danger btn-sm" 
+                            [disabled]="commande.idCommande === undefined" 
+                            (click)="deleteCommande(commande.idCommande)"
+                            aria-label="Supprimer la commande">
+                      <i class="bi bi-trash"></i> Supprimer
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
-  
+</main>
