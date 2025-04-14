@@ -23,6 +23,12 @@ import { RoleAssignmentComponent } from './backOffice/Modules/User Management/ro
 import { RoleListComponent } from './backOffice/Modules/User Management/role-management/role-list/role-list.component';
 import { UpdateComponent } from './backOffice/Modules/User Management/role-management/update/update.component';
 import { UserListComponent } from './backOffice/Modules/User Management/user-list/user-list.component';
+import {
+  RestaurantListComponent
+} from "./frontOffice/restaurantmanagment/component/restaurant-list/restaurant-list.component";
+import {
+  RestaurantFormComponent
+} from "./frontOffice/restaurantmanagment/component/restaurant-form/restaurant-form.component";
 
 const routes: Routes = [
   // Default Redirect to Client Home
@@ -40,35 +46,59 @@ const routes: Routes = [
 
     ],
   },
- 
+
   // Authentication
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'password-reset', component: WelcomNewUserComponent }, 
+  { path: 'password-reset', component: WelcomNewUserComponent },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'welcome', component: WelcomNewUserComponent },
- 
+
   // BackOffice Layout (Dashboard)
   {
     path: 'dashboard',
     component: DashboardLayoutComponent,
-    canActivate: [AuthGaurdservService],
+    //canActivate: [AuthGaurdservService],
     children: [
       { path: '', component: HomeUserComponent },
       { path: 'user/management-user', component: UserManagementComponent ,  canActivate: [RoleGaurdService], data: { roles: ['ADMIN'] }},
-      
-      { path: 'user/RoleAssignment', component: RoleAssignmentComponent ,  canActivate: [RoleGaurdService], data: { roles: ['ADMIN'] }}, 
+
+      { path: 'user/RoleAssignment', component: RoleAssignmentComponent ,  canActivate: [RoleGaurdService], data: { roles: ['ADMIN'] }},
       { path: 'user/usersList', component: UserListComponent ,  canActivate: [RoleGaurdService], data: { roles: ['ADMIN'] }},
       { path: 'user/createUser', component: CreateUserComponent ,  canActivate: [RoleGaurdService], data: { roles: ['ADMIN'] }},
       { path: 'user/rolesList', component: RoleListComponent ,  canActivate: [RoleGaurdService], data: { roles: ['ADMIN'] }},
       { path: 'user/updateRole/:name', component: UpdateComponent ,  canActivate: [RoleGaurdService], data: { roles: ['ADMIN'] }},
       { path: 'user/createRole', component: CreateRoleComponent ,  canActivate: [RoleGaurdService], data: { roles: ['ADMIN'] } },
-      ],
+
+
+
+
+
+      //atef
+      { path: 'restaurant/list', component: RestaurantListComponent },
+
+
+      {
+        path: 'restaurants/new',
+        component: RestaurantFormComponent,
+
+      },
+      {
+        path: 'restaurant/edit/:id',
+        component: RestaurantFormComponent,
+
+      }
+
+
+
+
+
+    ],
   },
- 
-  
- 
+
+
+
   // Not Found Page
   { path: '**', component: NotFoundComponent },
 ];

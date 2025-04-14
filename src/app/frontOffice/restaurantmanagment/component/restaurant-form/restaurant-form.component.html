@@ -1,0 +1,78 @@
+<main id="main" class="main">
+  <div class="container mt-4">
+    <h2>{{ pageTitle }}</h2>
+
+    <!-- Message d'erreur -->
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+      <button (click)="errorMessage = null" class="btn-close float-end"></button>
+    </div>
+
+    <!-- Indicateur de chargement -->
+    <div *ngIf="isLoading" class="text-center my-4">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Chargement...</span>
+      </div>
+      <p>{{ isEditMode ? 'Chargement du restaurant...' : 'Enregistrement en cours...' }}</p>
+    </div>
+
+    <!-- Formulaire -->
+    <form *ngIf="!isLoading" [formGroup]="restaurantForm" (ngSubmit)="onSubmit()">
+      <!-- Nouveau champ nomresto -->
+      <div class="mb-3">
+        <label for="nomresto" class="form-label">Nom du restaurant</label>
+        <input type="text" class="form-control" id="nomresto"
+               formControlName="nomresto" required
+               [class.is-invalid]="restaurantForm.get('nomresto')?.invalid &&
+                               (restaurantForm.get('nomresto')?.dirty || restaurantForm.get('nomresto')?.touched)">
+        <div *ngIf="restaurantForm.get('nomresto')?.invalid &&
+                 (restaurantForm.get('nomresto')?.dirty || restaurantForm.get('nomresto')?.touched)"
+             class="invalid-feedback">
+          <small *ngIf="restaurantForm.get('nomresto')?.errors?.['required']">
+            Le nom du restaurant est obligatoire
+          </small>
+          <small *ngIf="restaurantForm.get('nomresto')?.errors?.['minlength']">
+            Le nom doit contenir au moins 3 caractères
+          </small>
+          <small *ngIf="restaurantForm.get('nomresto')?.errors?.['maxlength']">
+            Le nom ne peut pas dépasser 50 caractères
+          </small>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="montantTotal" class="form-label">Montant Total (TND)</label>
+        <input type="number" class="form-control" id="montantTotal"
+               formControlName="montantTotal" step="0.01" min="0">
+        <div *ngIf="restaurantForm.get('montantTotal')?.invalid &&
+                 (restaurantForm.get('montantTotal')?.dirty || restaurantForm.get('montantTotal')?.touched)"
+             class="text-danger">
+          <small *ngIf="restaurantForm.get('montantTotal')?.errors?.['required']">
+            Ce champ est obligatoire
+          </small>
+          <small *ngIf="restaurantForm.get('montantTotal')?.errors?.['min']">
+            Le montant ne peut pas être négatif
+          </small>
+        </div>
+      </div>
+
+      <div class="mb-3 form-check form-switch">
+        <input type="checkbox" class="form-check-input" id="status"
+               formControlName="status">
+        <label class="form-check-label" for="status">Restaurant ouvert</label>
+      </div>
+
+      <div class="d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-outline-secondary"
+                (click)="onCancel()" [disabled]="isLoading">
+          Annuler
+        </button>
+        <button type="submit" class="btn btn-primary"
+                [disabled]="restaurantForm.invalid || isLoading">
+          <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-1"></span>
+          {{ isEditMode ? 'Mettre à jour' : 'Créer' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</main>

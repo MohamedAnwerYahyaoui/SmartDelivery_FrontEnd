@@ -1,0 +1,83 @@
+<main id="main" class="main">
+<div class="container mt-4">
+  <h2>Gestion des Restaurants</h2>
+
+  <!-- Gestion des erreurs -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+    <button (click)="errorMessage = null" class="btn-close float-end"></button>
+  </div>
+
+  <!-- Loading indicator -->
+  <div *ngIf="isLoading" class="text-center my-4">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p>Chargement des restaurants...</p>
+  </div>
+
+  <!-- Contenu principal -->
+  <div *ngIf="!isLoading">
+    <div class="mb-3">
+      <input type="text" class="form-control" placeholder="Rechercher par ID ou montant..."
+             [(ngModel)]="searchTerm" (input)="filterRestaurants()">
+    </div>
+
+    <div class="text-end mb-3">
+      <button routerLink="/dashboard/restaurants/new" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Ajouter un Restaurant
+      </button>
+    </div>
+
+    <div *ngIf="filteredRestaurants.length === 0" class="alert alert-info">
+      Aucun restaurant trouvé.
+    </div>
+
+    <div *ngIf="filteredRestaurants.length > 0" class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nom Restorant</th>
+          <th>Montant Total</th>
+          <th>Statut</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let restaurant of filteredRestaurants">
+          <td>{{ restaurant.idRestaurant }}</td>
+          <td>{{ restaurant.nomresto }}</td>
+          <td>{{ restaurant.mantantTotale | currency:'TND':'symbol':'1.2-2' }}</td>
+          <td>
+              <span class="badge" [ngClass]="{
+                'bg-success': restaurant.Status,
+                'bg-danger': !restaurant.Status
+              }">
+                {{ restaurant.Status ? 'Ouvert' : 'Fermé' }}
+              </span>
+          </td>
+          <td>
+            <div class="d-flex gap-2">
+              <button [routerLink]="['/dashboard/restaurant/edit', restaurant.idRestaurant]"
+                      class="btn btn-primary btn-sm">
+                <i class="bi bi-pencil"></i> Modifier
+              </button>
+              <button (click)="toggleStatus(restaurant)"
+                      class="btn btn-warning btn-sm">
+                <i class="bi" [class.bi-lock]="restaurant.Status" [class.bi-unlock]="!restaurant.Status"></i>
+                {{ restaurant.Status ? 'Fermer' : 'Ouvrir' }}
+              </button>
+              <button (click)="deleteRestaurant(restaurant.idRestaurant!)"
+                      class="btn btn-danger btn-sm">
+                <i class="bi bi-trash"></i> Supprimer
+              </button>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</main>

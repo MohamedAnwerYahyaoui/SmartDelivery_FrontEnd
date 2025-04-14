@@ -31,6 +31,11 @@ import { RoleListComponent } from './backOffice/Modules/User Management/role-man
 import { UpdateComponent } from './backOffice/Modules/User Management/role-management/update/update.component';
 import { AuthInterceptorService } from './authentification/services/auth-interceptor.service';
 import { AddClientComponent } from './backOffice/Modules/User Management/add-client/add-client.component';
+import { RepasListComponent } from './frontOffice/restaurantmanagment/component/repas-list/repas-list.component';
+import { RepasFormComponent } from './frontOffice/restaurantmanagment/component/repas-form/repas-form.component';
+import { RestaurantStatusComponent } from './frontOffice/restaurantmanagment/component/restaurant-status/restaurant-status.component';
+import { RestaurantListComponent } from './frontOffice/restaurantmanagment/component/restaurant-list/restaurant-list.component';
+import { RestaurantFormComponent } from './frontOffice/restaurantmanagment/component/restaurant-form/restaurant-form.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +64,12 @@ import { AddClientComponent } from './backOffice/Modules/User Management/add-cli
     RoleAssignmentComponent,
     RoleListComponent,
     UpdateComponent,
-    AddClientComponent
+    AddClientComponent,
+    RepasListComponent,
+    RepasFormComponent,
+    RestaurantStatusComponent,
+    RestaurantListComponent,
+    RestaurantFormComponent
   ],
   imports: [
     BrowserModule,
