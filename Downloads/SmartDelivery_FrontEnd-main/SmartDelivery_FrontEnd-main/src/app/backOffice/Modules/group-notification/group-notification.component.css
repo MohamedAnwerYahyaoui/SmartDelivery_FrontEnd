@@ -1,0 +1,49 @@
+/* 1. Dégradé de fond pour la section principale */
+.gradient-bg {
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    min-height: 100vh; /* pleine hauteur */
+  }
+  
+  /* 2. Titre dégradé (appliqué uniquement au texte) */
+  .title-gradient {
+    font-size: 2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(to right, #1e90ff, #00bfff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; /* Important pour voir le gradient dans le texte */
+  }
+  
+  /* 3. Placeholder minimaliste */
+  .placeholder-minimal::placeholder {
+    color: #888;
+    opacity: 1;
+    font-style: italic;
+  }
+  
+  /* 4. Carte pour chaque notification */
+  .notification-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  .notification-card .card-body {
+    padding: 1rem;
+  }
+  
+  /* 5. Style du formulaire principal */
+  form.bg-white {
+    border-radius: 8px;
+  }
+  
+  /* 6. Ombrage doux */
+  .shadow {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 7. Ajustements divers */
+  .fw-bold {
+    font-weight: 600 !important;
+  }
+  

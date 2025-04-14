@@ -1,0 +1,47 @@
+/* 1. Fond blanc pour la section */
+.bg-white-stats {
+    background-color: #fff; /* Fond blanc */
+    min-height: 100vh; /* Optionnel, prend la hauteur de la page */
+  }
+  
+  /* 2. Titre dégradé */
+  .title-gradient {
+    font-size: 2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(to right, #1e90ff, #00bfff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  /* 3. Mise en forme des stats */
+  .stats-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 auto;
+    max-width: 300px;
+  }
+  
+  .stat-item {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+  }
+  
+  .stat-label {
+    font-weight: 600;
+    margin-right: 0.5rem;
+  }
+  
+  .stat-value {
+    font-weight: 500;
+  }
+  
+  /* 4. Container du chart */
+  .chart-container {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  

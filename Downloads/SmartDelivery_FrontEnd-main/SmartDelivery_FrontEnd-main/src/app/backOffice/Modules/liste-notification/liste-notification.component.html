@@ -1,0 +1,50 @@
+<main id="main" class="main">
+  <div class="notification-container">
+    <h2 class="form-title">Liste des notifications</h2>
+    <ul class="notification-list">
+      <li
+        *ngFor="let notification of notifications"
+        class="notification-card"
+        [ngClass]="{ 'read': notification.read }"
+      >
+        <div class="notification-header">
+          <span class="client">
+            {{ getGenderEmoji(notification.nomClient) }}
+            {{ notification.nomClient || '(non défini)' }}
+          </span>
+          <span class="status">
+            {{ notification.read ? '✔️ (lu)' : '🔔 (non lu)' }}
+          </span>
+        </div>
+        <div class="notification-content">
+          {{ notification.contenu }}
+        </div>
+        <div class="notification-date">
+          <small>{{ notification.date | date:'short' }}</small>
+        </div>
+        <div class="notification-actions">
+          <button
+            *ngIf="!notification.read"
+            (click)="markAsRead(notification)"
+            class="action-btn read-btn"
+          >
+            Marquer comme lu
+          </button>
+          <button
+            *ngIf="notification.read"
+            (click)="markAsUnread(notification)"
+            class="action-btn unread-btn"
+          >
+            Marquer comme non lu
+          </button>
+          <button (click)="editNotification(notification)" class="action-btn edit-btn">
+            Modifier
+          </button>
+          <button (click)="deleteNotification(notification)" class="action-btn delete-btn">
+            Supprimer
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</main>

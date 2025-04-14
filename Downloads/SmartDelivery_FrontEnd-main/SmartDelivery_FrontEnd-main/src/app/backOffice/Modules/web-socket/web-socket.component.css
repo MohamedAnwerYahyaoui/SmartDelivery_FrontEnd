@@ -1,0 +1,25 @@
+/* Titre dégradé plus visible */
+.text-gradient {
+    font-weight: bold;
+    font-size: 2em;
+    background: linear-gradient(to right, #1e90ff, #00bfff, #00cfff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  /* Ajustements pour la carte et la liste */
+  .card {
+    border-radius: 8px;
+  }
+  
+  .list-group-item {
+    border: none;
+    border-bottom: 1px solid #eee;
+  }
+  
+  /* Optionnel : survol */
+  .list-group-item:hover {
+    background-color: #f8f9fa;
+  }
+  

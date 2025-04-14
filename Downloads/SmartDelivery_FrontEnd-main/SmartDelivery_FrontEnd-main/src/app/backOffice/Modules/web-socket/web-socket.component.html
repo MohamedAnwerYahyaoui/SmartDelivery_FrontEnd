@@ -1,0 +1,52 @@
+<main id="main" class="main container py-4">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <!-- Titre stylisé -->
+        <h2 class="mb-4 text-center text-gradient">
+          🔔 WebSocket - Notifications
+        </h2>
+  
+        <!-- Formulaire de saisie -->
+        <div class="card p-3 shadow-sm">
+          <div class="form-group mb-3">
+            <label for="nomClient" class="fw-bold">Nom du client :</label>
+            <input
+              type="text"
+              id="nomClient"
+              [(ngModel)]="clientName"
+              class="form-control"
+              placeholder="Entrez un nom (ex. Alice)"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="messageContent" class="fw-bold">Message :</label>
+            <input
+              type="text"
+              id="messageContent"
+              [(ngModel)]="messageContent"
+              class="form-control"
+              placeholder="Entrez un message"
+            />
+          </div>
+          <button (click)="sendTestNotification()" class="btn btn-primary w-100">
+            Envoyer une notification
+          </button>
+        </div>
+  
+        <!-- Affichage des notifications -->
+        <div class="mt-4">
+          <h4 class="fw-bold">Notifications reçues</h4>
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let notif of notifications">
+              <div>
+                <strong class="text-primary">{{ notif.nomClient }}</strong>
+                <span> - {{ notif.contenu }}</span>
+              </div>
+              <small class="text-muted">{{ notif.date | date:'short' }}</small>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+  

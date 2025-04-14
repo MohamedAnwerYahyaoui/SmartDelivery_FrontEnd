@@ -1,0 +1,35 @@
+<main id="main" class="main bg-white-stats">
+  <div class="container py-4">
+    <!-- Titre stylisé -->
+    <h2 class="title-gradient text-center mb-4">
+      STATISTIQUES DES NOTIFICATIONS
+    </h2>
+
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+    <!-- Bloc statistiques -->
+    <div class="stats-details" *ngIf="stats">
+      <p class="stat-item">
+        <span class="stat-label text-info">Total :</span>
+        <span class="stat-value text-info">{{ stats.total }}</span>
+      </p>
+      <p class="stat-item">
+        <span class="stat-label text-success">Lu :</span>
+        <span class="stat-value text-success">{{ stats.read }}</span>
+      </p>
+      <p class="stat-item">
+        <span class="stat-label text-danger">Non lu :</span>
+        <span class="stat-value text-danger">{{ stats.unread }}</span>
+      </p>
+    </div>
+
+    <!-- Pie chart -->
+    <div *ngIf="stats" class="chart-container mx-auto mt-4">
+      <canvas
+        baseChart
+        [data]="pieChartData"
+        [type]="pieChartType"
+      ></canvas>
+    </div>
+  </div>
+</main>

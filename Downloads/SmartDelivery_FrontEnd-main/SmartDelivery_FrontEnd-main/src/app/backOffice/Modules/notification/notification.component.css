@@ -1,0 +1,101 @@
+/* Conteneur principal du formulaire */
+.notification-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre du formulaire avec dégradé de couleurs */
+.form-title {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  /* Dégradé appliqué au texte */
+  background: linear-gradient(90deg, #ff8a80, #ffa726, #80deea, #82b1ff, #b388ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Chaque groupe de champs */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+/* Label des champs */
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Champs texte et textarea */
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+/* Effet focus sur les champs */
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #2196f3;
+}
+
+/* Si le champ est invalide et touché, bordure rouge */
+.form-group input.ng-invalid.ng-touched,
+.form-group textarea.ng-invalid.ng-touched {
+  border-color: #f44336;
+}
+
+/* Message d'erreur */
+.error-msg {
+  color: #f44336;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+/* Bouton de soumission */
+button[type="submit"] {
+  background-color: #2196f3;
+  border: none;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+  width: 100%;
+}
+
+/* Effet hover sur le bouton */
+button[type="submit"]:hover {
+  background-color: #1976d2;
+}
+
+/* Bouton désactivé */
+button[type="submit"]:disabled {
+  background-color: #90caf9;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Message de réussite ou d'erreur */
+.notification-container p {
+  margin-top: 1rem;
+  color: #333;
+  text-align: center;
+}
