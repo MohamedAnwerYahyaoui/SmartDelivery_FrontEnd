@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Commande, Status } from '../models/Commande.model';
 import { CommandeService } from '../commande.service';
 import { Router } from '@angular/router';
-import { ChartConfiguration, ChartType, ChartData, ChartDataset } from 'chart.js';  // Ajuster l'importation
+import { ChartConfiguration, ChartType, ChartData } from 'chart.js';
+
 @Component({
   selector: 'app-commande-list',
   templateUrl: './commande-list.component.html',
@@ -16,7 +17,7 @@ export class CommandeListComponent implements OnInit {
   totalCommandes: number = 0;
   totalMontant: number = 0;
   statusCount: { [key: string]: number } = {};
-
+  selectedStatus: Status | null = null; // Ajout pour le filtrage par statut
   // Graphique de statistiques de statut
   pieChartLabels: string[] = [];
   pieChartData: ChartData<'pie'> = {
@@ -30,12 +31,17 @@ export class CommandeListComponent implements OnInit {
   ngOnInit(): void {
     this.loadCommandes();
   }
+
   trackById(index: number, commande: any): number {
     return commande.idCommande;
   }
 
   loadCommandes(): void {
-    this.commandeService.getCommandes().subscribe({
+    const observable = this.selectedStatus
+      ? this.commandeService.getCommandesByStatus(this.selectedStatus)
+      : this.commandeService.getCommandes();
+
+    observable.subscribe({
       next: (data) => {
         this.commandes = data;
         this.errorMessage = null;
@@ -49,7 +55,6 @@ export class CommandeListComponent implements OnInit {
           this.statusCount[status] = (this.statusCount[status] || 0) + 1;
         }
 
-        // Mise à jour des données pour le graphique
         this.updateChartData();
       },
       error: (err) => {
@@ -58,9 +63,15 @@ export class CommandeListComponent implements OnInit {
       }
     });
   }
+
   updateChartData(): void {
     this.pieChartLabels = Object.keys(this.statusCount);
-    this.pieChartData.datasets[0].data = Object.values(this.statusCount);  // Mettre les valeurs des statuts dans le dataset
+    this.pieChartData.datasets[0].data = Object.values(this.statusCount);
+  }
+
+  filterByStatus(status: Status | null): void {
+    this.selectedStatus = status;
+    this.loadCommandes();
   }
 
   deleteCommande(id: number | undefined): void {
@@ -72,6 +83,7 @@ export class CommandeListComponent implements OnInit {
       this.commandeService.deleteCommande(id).subscribe({
         next: () => {
           this.commandes = this.commandes.filter(commande => commande.idCommande !== id);
+          this.loadCommandes(); // Recharger pour mettre à jour les stats
           this.errorMessage = null;
         },
         error: (err) => {
@@ -81,7 +93,6 @@ export class CommandeListComponent implements OnInit {
       });
     }
   }
-  
 
   navigateToCreate(): void {
     this.router.navigate(['/dashboard/commande/create']);
@@ -94,24 +105,23 @@ export class CommandeListComponent implements OnInit {
     }
     this.router.navigate([`/dashboard/commande/edit/${id}`]);
   }
+
   updateCommande(): void {
     if (!this.selectedCommande || this.selectedCommande.idCommande === undefined) {
       this.errorMessage = 'Invalid commande ID.';
       return;
     }
-  
+
     this.commandeService.updateCommande(
       this.selectedCommande.idCommande,
       this.selectedCommande
     ).subscribe({
       next: (updatedCommande) => {
-        // mettre à jour la commande dans le tableau si besoin
         const index = this.commandes.findIndex(c => c.idCommande === updatedCommande.idCommande);
         if (index !== -1) {
           this.commandes[index] = updatedCommande;
         }
         this.errorMessage = null;
-        // afficher un message de succès ou rediriger
       },
       error: (err) => {
         this.errorMessage = 'Failed to update commande. Please try again later.';
@@ -119,16 +129,17 @@ export class CommandeListComponent implements OnInit {
       }
     });
   }
-  
+
   getStatusClass(status: string): string {
     switch (status) {
       case 'Pending':
-        return 'badge-warning'; // Exemple de classe pour statut 'Pending'
+        return 'badge-warning';
       case 'Completed':
-        return 'badge-success'; // Exemple de classe pour statut 'Completed'
+        return 'badge-success';
       case 'Cancelled':
-        return 'badge-danger'; // Exemple de classe pour statut 'Cancelled'
+        return 'badge-danger';
       default:
-        return 'badge-secondary'; // Classe par défaut
+        return 'badge-secondary';
     }
-  }}
+  }
+}

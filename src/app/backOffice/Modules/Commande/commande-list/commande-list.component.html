@@ -7,6 +7,20 @@
       </button>
     </header>
 
+    <!-- Filtres -->
+    <div class="filter-section mb-3">
+      <div class="d-flex align-items-center gap-3">
+        <div>
+          <label for="statusFilter" class="me-2">Filtrer par statut :</label>
+          <select id="statusFilter" class="form-select w-auto d-inline-block" [(ngModel)]="selectedStatus" (ngModelChange)="filterByStatus($event)">
+            <option [ngValue]="null">Tous</option>
+            <option *ngFor="let status of status | keyvalue" [ngValue]="status.key">{{ status.key }}</option>
+          </select>
+        </div>
+        <!-- Le filtrage par date sera ajouté plus tard -->
+      </div>
+    </div>
+
     <!-- Error Message -->
     <div *ngIf="errorMessage" class="alert alert-danger" role="alert" aria-live="assertive">
       {{ errorMessage }}
