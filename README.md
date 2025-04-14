@@ -1,27 +1,45 @@
-# TechRoot
+# SmartDelivery - FrontEnd Fournisseur
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+![Dashboard Preview](https://via.placeholder.com/800x400?text=Dashboard+Preview) <!-- Remplacez par une vraie image -->
 
-## Development server
+## 📌 Description
+Interface fournisseur pour la plateforme **SmartDelivery** avec gestion complète des fournisseurs, notifications par email et outils de reporting.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🌟 Fonctionnalités clés
 
-## Code scaffolding
+### 🧑‍💻 Gestion des fournisseurs (CRUD)
+- **Ajout** via formulaire avec validation
+- **Modification** des informations existantes
+- **Suppression** avec confirmation
+- **Liste** paginée avec filtres et tri
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### ✉ Notifications automatiques
+- Envoi d'email au fournisseur lors de :
+  - Création de compte
+ 
+### 📊 Reporting & Export
+- **Génération de QR Code** pour identification
+- **Export Excel** des données fournisseurs
+- **Génération PDF** des fiches fournisseurs
+- **Tableau de bord statistique** avec :
+  - Nombre de fournisseurs par région
+  - Évolution mensuelle
+  - Graphiques interactifs
 
-## Build
+## 🛠 Stack technique
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Frontend
+| Technologie | Usage |
+|-------------|-------|
+| React 18+ | Framework principal |
+| TypeScript | Typage statique |
+| Material-UI | Composants UI |
+| Redux Toolkit | Gestion d'état |
+| Formik + Yup | Gestion des formulaires |
+| Axios | Communication API |
+| Chart.js | Visualisation des stats |
+| QRCode.react | Génération QR Code |
+| xlsx | Export Excel |
+| jsPDF | Génération PDF |
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
