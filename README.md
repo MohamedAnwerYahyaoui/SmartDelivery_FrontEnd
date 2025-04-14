@@ -1,7 +1,3 @@
-# SmartDelivery - FrontEnd Fournisseur
-
-![Dashboard Preview](https://via.placeholder.com/800x400?text=Dashboard+Preview) <!-- Remplacez par une vraie image -->
-
 ## 📌 Description
 Interface fournisseur pour la plateforme **SmartDelivery** avec gestion complète des fournisseurs, notifications par email et outils de reporting.
 
