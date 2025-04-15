@@ -1,0 +1,40 @@
+<div class="card mt-4">
+    <div class="card-header bg-info text-white">
+      <h4>Statut du Restaurant</h4>
+    </div>
+    <div class="card-body">
+      <div *ngIf="restaurantStats" class="row">
+        <div class="col-md-6">
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title">Montant Total</h5>
+              <p class="card-text display-6">{{ restaurantStats.mantantTotale | currency:'TND':'symbol':'1.2-2' }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title">Statut</h5>
+              <p class="card-text">
+                <span class="badge" [ngClass]="{
+                  'bg-success': restaurantStats.Status,
+                  'bg-danger': !restaurantStats.Status
+                }">
+                  {{ restaurantStats.Status ? 'Ouvert' : 'Fermé' }}
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Amélioration: Revenu total basé sur les repas -->
+      <div class="card mt-3">
+        <div class="card-body">
+          <h5 class="card-title">Revenu Total (Tous les repas)</h5>
+          <p class="card-text display-6">{{ totalRevenue | currency:'TND':'symbol':'1.2-2' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>

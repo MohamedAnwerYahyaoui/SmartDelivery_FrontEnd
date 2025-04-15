@@ -31,7 +31,24 @@ import { RoleListComponent } from './backOffice/Modules/User Management/role-man
 import { UpdateComponent } from './backOffice/Modules/User Management/role-management/update/update.component';
 import { AuthInterceptorService } from './authentification/services/auth-interceptor.service';
 import { AddClientComponent } from './backOffice/Modules/User Management/add-client/add-client.component';
-
+import { AddPromotionComponent } from './backOffice/Modules/PromotionManagement/add-promotion/add-promotion.component';
+import { ListPromotionComponent } from './backOffice/Modules/PromotionManagement/list-promotion/list-promotion.component';
+import { CommandeFormComponent } from './backOffice/Modules/Commande/commande-form/commande-form.component';
+import { CommandeListComponent } from './backOffice/Modules/Commande/commande-list/commande-list.component';
+import { NgChartsModule } from 'ng2-charts';
+import { FournisseurFormComponent } from './backOffice/Modules/Fournisseur/fournisseur-form/fournisseur-form.component';
+import { FournisseurListComponent } from './backOffice/Modules/Fournisseur/fournisseur-list/fournisseur-list.component';
+import { GroupNotificationComponent } from './backOffice/Modules/Notification/group-notification/group-notification.component';
+import { ListeNotificationComponent } from './backOffice/Modules/Notification/liste-notification/liste-notification.component';
+import { NotificationHistoryComponent } from './backOffice/Modules/Notification/notification-history/notification-history.component';
+import { NotificationStatsComponent } from './backOffice/Modules/Notification/notification-stats/notification-stats.component';
+import { NotificationComponent } from './backOffice/Modules/Notification/notification/notification.component';
+import { WebSocketComponent } from './backOffice/Modules/Notification/web-socket/web-socket.component';
+import { RepasFormComponent } from './backOffice/Modules/restaurantmanagment/component/repas-form/repas-form.component';
+import { RepasListComponent } from './backOffice/Modules/restaurantmanagment/component/repas-list/repas-list.component';
+import { RestaurantFormComponent } from './backOffice/Modules/restaurantmanagment/component/restaurant-form/restaurant-form.component';
+import { RestaurantListComponent } from './backOffice/Modules/restaurantmanagment/component/restaurant-list/restaurant-list.component';
+import { RestaurantStatusComponent } from './backOffice/Modules/restaurantmanagment/component/restaurant-status/restaurant-status.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,14 +76,32 @@ import { AddClientComponent } from './backOffice/Modules/User Management/add-cli
     RoleAssignmentComponent,
     RoleListComponent,
     UpdateComponent,
-    AddClientComponent
+    AddClientComponent,
+    AddPromotionComponent,
+    ListPromotionComponent,
+    CommandeFormComponent,
+    CommandeListComponent,
+    FournisseurFormComponent,
+    FournisseurListComponent,
+    GroupNotificationComponent,
+    ListeNotificationComponent,
+    NotificationHistoryComponent,
+    NotificationStatsComponent,
+    NotificationComponent,
+    WebSocketComponent,
+    RepasFormComponent,
+    RepasListComponent,
+    RestaurantFormComponent,
+    RestaurantListComponent,
+    RestaurantStatusComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgChartsModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
   bootstrap: [AppComponent]

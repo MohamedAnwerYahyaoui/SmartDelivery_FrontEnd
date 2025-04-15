@@ -1,0 +1,36 @@
+<main id="main" class="main">
+    <div class="notification-container">
+      <h2 class="form-title">{{ editMode ? 'Modifier la Notification' : 'Ajouter une Notification' }}</h2>
+      <form [formGroup]="notificationForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="nomClient">Nom du Client :</label>
+          <input
+            id="nomClient"
+            formControlName="nomClient"
+            type="text"
+            placeholder="Entrez le nom du client"
+          />
+          <div *ngIf="notificationForm.get('nomClient')?.errors?.['required'] && notificationForm.get('nomClient')?.touched">
+            <small class="error-msg">Le nom du client est requis</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="contenu">Contenu :</label>
+          <textarea
+            id="contenu"
+            formControlName="contenu"
+            placeholder="Entrez le contenu de la notification"
+          ></textarea>
+          <div *ngIf="notificationForm.get('contenu')?.errors?.['required'] && notificationForm.get('contenu')?.touched">
+            <small class="error-msg">Le contenu est requis</small>
+          </div>
+        </div>
+        <button type="submit" [disabled]="notificationForm.invalid">
+          {{ editMode ? 'Modifier la Notification' : 'Ajouter la Notification' }}
+        </button>
+      </form>
+      <div *ngIf="message">
+        <p>{{ message }}</p>
+      </div>
+    </div>
+  </main>

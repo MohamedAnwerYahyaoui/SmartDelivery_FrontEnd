@@ -1,0 +1,122 @@
+<main id="main" class="main gradient-bg">
+    <div class="container py-4">
+      <!-- Titre stylisé avec gradient sur le texte -->
+      <h2 class="title-gradient text-center mb-4">
+        Envoi Groupé de Notifications Personnalisées
+      </h2>
+  
+      <!-- Formulaire principal -->
+      <form [formGroup]="groupNotificationForm" (ngSubmit)="onSubmit()" class="p-3 bg-white shadow rounded">
+        <!-- Champ Template -->
+        <div class="form-group mb-3">
+          <label for="template" class="fw-bold">
+            <span>📜 Template :</span>
+          </label>
+          <input
+            type="text"
+            id="template"
+            formControlName="template"
+            class="form-control placeholder-minimal"
+            placeholder="Ex : Bonjour {nom}"
+          />
+        </div>
+  
+        <!-- Tableau dynamique de notifications -->
+        <div formArrayName="notifications" class="notification-list">
+          <div
+            *ngFor="let notification of notifications.controls; let i = index"
+            [formGroupName]="i"
+            class="card notification-card mt-3"
+          >
+            <div class="card-body">
+              <!-- Titre de la carte -->
+              <h4 class="card-title">
+                🔔 Notification {{ i + 1 }}
+              </h4>
+  
+              <!-- Nom du Client -->
+              <div class="form-group mb-3">
+                <label for="nomClient" class="fw-bold">
+                  <span>👤 Nom du Client :</span>
+                </label>
+                <input
+                  type="text"
+                  id="nomClient"
+                  formControlName="nomClient"
+                  class="form-control placeholder-minimal"
+                  placeholder="Entrez le nom du client"
+                />
+              </div>
+  
+              <!-- Donnée personnalisée (clé et valeur) -->
+              <div formGroupName="data" class="form-group">
+                <label class="fw-bold">Donnée personnalisée (clé et valeur) :</label>
+                <div class="row g-2 mt-2">
+                  <div class="col">
+                    <input
+                      type="text"
+                      formControlName="key"
+                      class="form-control placeholder-minimal"
+                      placeholder="🔑 Clé"
+                    />
+                  </div>
+                  <div class="col">
+                    <input
+                      type="text"
+                      formControlName="value"
+                      class="form-control placeholder-minimal"
+                      placeholder="💡 Valeur"
+                    />
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Bouton Supprimer la notification -->
+              <button
+                type="button"
+                class="btn btn-outline-danger btn-sm mt-3"
+                (click)="removeNotification(i)"
+                *ngIf="notifications.length > 1"
+              >
+                Supprimer
+              </button>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Boutons Ajouter & Envoyer -->
+        <div class="mt-4 d-flex gap-2">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="addNotification()"
+          >
+            ➕ Ajouter une notification
+          </button>
+          <button type="submit" class="btn btn-primary">
+            🚀 Envoyer
+          </button>
+        </div>
+      </form>
+  
+      <!-- Messages de succès / erreur -->
+      <div *ngIf="successMessage" class="alert alert-success mt-3">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+        {{ errorMessage }}
+      </div>
+  
+      <!-- Liste des notifications envoyées -->
+      <div *ngIf="submittedNotifications && submittedNotifications.length" class="mt-5">
+        <h3 class="mb-3">Notifications envoyées :</h3>
+        <ul class="list-group">
+          <li *ngFor="let notif of submittedNotifications" class="list-group-item">
+            <strong>{{ notif.nomClient }}</strong>
+            <span> - {{ notif.contenu }} - {{ notif.date | date:'short' }}</span>
+            <span class="ms-2">| Lu : <strong>{{ notif.read ? 'Oui' : 'Non' }}</strong></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>

@@ -1,0 +1,42 @@
+<div class="container mt-4">
+    <h2>Liste des Repas</h2>
+  
+    <div class="mb-3">
+      <input type="text" class="form-control" placeholder="Rechercher..."
+             [(ngModel)]="searchTerm" (input)="filterRepas()">
+    </div>
+  
+    <div class="text-end mb-3">
+      <button routerLink="/repas/new" class="btn btn-success">Ajouter un Repas</button>
+    </div>
+  
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Description</th>
+          <th>Prix (DT)</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let repas of filteredRepas">
+          <td>{{ repas.id }}</td>
+          <td>{{ repas.nom }}</td>
+          <td>{{ repas.desc }}</td>
+          <td>{{ repas.prix | number:'1.2-2' }}</td>
+          <td>
+            <button [routerLink]="['/repas/edit', repas.id]" class="btn btn-primary btn-sm me-2">
+              Modifier
+            </button>
+            <button (click)="deleteRepas(repas.id!)" class="btn btn-danger btn-sm">
+              Supprimer
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

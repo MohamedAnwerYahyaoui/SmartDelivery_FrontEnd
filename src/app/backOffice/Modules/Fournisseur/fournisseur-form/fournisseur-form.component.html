@@ -1,0 +1,105 @@
+<main id="main" class="main">
+    <div class="container p-4">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="m-0">{{ isEditMode ? 'Modifier le fournisseur' : 'Ajouter un fournisseur' }}</h2>
+        </div>
+        
+        <div class="card-body">
+          <div *ngIf="isLoading" class="alert alert-info">Chargement en cours...</div>
+          <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  
+          <form [formGroup]="fournisseurForm" (ngSubmit)="onSubmit()">
+            <!-- Nom du fournisseur -->
+            <div class="mb-3">
+              <label for="nomFournisseur" class="form-label">Nom du fournisseur *</label>
+              <input
+                id="nomFournisseur"
+                class="form-control"
+                formControlName="nomFournisseur"
+                type="text"
+                placeholder="Entrez le nom du fournisseur"
+                [class.is-invalid]="nomFournisseur?.invalid && (nomFournisseur?.dirty || nomFournisseur?.touched)"
+              />
+              <div class="invalid-feedback">
+                <div *ngIf="nomFournisseur?.errors?.['required']">Le nom est requis.</div>
+                <div *ngIf="nomFournisseur?.errors?.['minlength']">Le nom doit contenir au moins 3 caractères.</div>
+                <div *ngIf="nomFournisseur?.errors?.['maxlength']">Le nom ne doit pas dépasser 50 caractères.</div>
+              </div>
+            </div>
+  
+            <!-- Adresse -->
+            <div class="mb-3">
+              <label for="adresse" class="form-label">Adresse *</label>
+              <input
+                id="adresse"
+                class="form-control"
+                formControlName="adresse"
+                type="text"
+                placeholder="Entrez l'adresse"
+                [class.is-invalid]="adresse?.invalid && (adresse?.dirty || adresse?.touched)"
+              />
+              <div class="invalid-feedback">
+                <div *ngIf="adresse?.errors?.['required']">L'adresse est requise.</div>
+                <div *ngIf="adresse?.errors?.['minlength']">L'adresse doit contenir au moins 5 caractères.</div>
+                <div *ngIf="adresse?.errors?.['maxlength']">L'adresse ne doit pas dépasser 100 caractères.</div>
+              </div>
+            </div>
+  
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email *</label>
+              <input
+                id="email"
+                class="form-control"
+                formControlName="email"
+                type="email"
+                placeholder="Entrez l'email"
+                [class.is-invalid]="email?.invalid && (email?.dirty || email?.touched)"
+              />
+              <div class="invalid-feedback">
+                <div *ngIf="email?.errors?.['required']">L'email est requis.</div>
+                <div *ngIf="email?.errors?.['email']">Veuillez entrer un email valide.</div>
+              </div>
+            </div>
+  
+            <!-- Numéro de téléphone -->
+            <div class="mb-3">
+              <label for="numtel" class="form-label">Numéro de téléphone *</label>
+              <input
+                id="numtel"
+                class="form-control"
+                formControlName="numtel"
+                type="text"
+                placeholder="Entrez le numéro de téléphone"
+                [class.is-invalid]="numtel?.invalid && (numtel?.dirty || numtel?.touched)"
+              />
+              <div class="invalid-feedback">
+                <div *ngIf="numtel?.errors?.['required']">Le numéro de téléphone est requis.</div>
+                <div *ngIf="numtel?.errors?.['pattern']">Le numéro doit contenir entre 8 et 15 chiffres.</div>
+              </div>
+            </div>
+  
+            <!-- Boutons -->
+            <div class="form-actions d-flex justify-content-end gap-2">
+              <button 
+                type="button" 
+                class="btn btn-secondary" 
+                (click)="cancel()"
+              >
+                Annuler
+              </button>
+              <button 
+                type="submit" 
+                class="btn btn-primary"
+                [disabled]="fournisseurForm.invalid || isLoading"
+              >
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
+                {{ isEditMode ? 'Mettre à jour' : 'Créer' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>

@@ -1,0 +1,404 @@
+
+/* General Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #F7FAFC; /* Soft off-white background */
+    color: #000000; /* Black primary text */
+    display: flex;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 220px;
+    background-color: #EAF2FF; /* Light blue from screenshot */
+    padding: 1rem;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  
+  .sidebar .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1A73E8; /* Blue logo color from screenshot */
+    margin-bottom: 2rem;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+  }
+  
+  .sidebar ul li {
+    margin-bottom: 1rem;
+  }
+  
+  .sidebar ul li a {
+    color: #1A73E8; /* Blue links */
+    text-decoration: none;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .sidebar ul li a:hover {
+    color: #1557B0; /* Darker blue on hover */
+  }
+  
+  /* Main Content */
+  .main {
+    margin-left: 220px; /* Offset for sidebar */
+    flex: 1;
+    padding: 1rem;
+  }
+  
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
+  }
+  
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .header h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #000000; /* Black */
+  }
+  
+  /* Add Button */
+  .btn-add {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #2C7A7B; /* Teal primary */
+    border: none;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border-radius: 6px;
+    color: #FFFFFF; /* White text */
+    transition: background-color 0.2s ease, transform 0.1s ease;
+  }
+  
+  .btn-add:hover {
+    background-color: #234E52; /* Darker teal */
+    transform: translateY(-1px);
+  }
+  
+  .btn-add:active {
+    transform: translateY(0);
+  }
+  
+  /* Card Styling */
+  .card {
+    background-color: #FFFFFF; /* Pure white */
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #000000; /* Black */
+    margin-bottom: 0.75rem;
+    text-align: center;
+  }
+  
+  /* Chart Section */
+  .chart-section {
+    margin-bottom: 1.25rem;
+    max-width: 300px; /* Small chart */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .chart-section .card {
+    padding: 0.4rem;
+  }
+  
+  .chart-section canvas {
+    max-height: 150px !important;
+    max-width: 100% !important;
+  }
+  
+  /* Table Section */
+  .table-section .table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #FFFFFF; /* Pure white */
+  }
+  
+  .table th, .table td {
+    padding: 0.75rem;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #E2E8F0; /* Light gray border */
+  }
+  
+  .table th {
+    background-color: #E6FFFA; /* Light teal-gray */
+    color: #333333; /* Dark gray */
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8125rem;
+    letter-spacing: 0.05em;
+  }
+  
+  .table tbody tr {
+    transition: background-color 0.2s ease;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #E6FFFA; /* Faint teal hover */
+  }
+  
+  .table tbody td {
+    color: #000000; /* Black */
+    font-size: 0.875rem;
+  }
+  
+  /* Optimize Column Widths */
+  .table th:nth-child(1), .table td:nth-child(1) { /* ID */
+    width: 10%;
+  }
+  
+  .table th:nth-child(2), .table td:nth-child(2) { /* Montant Total */
+    width: 20%;
+  }
+  
+  .table th:nth-child(3), .table td:nth-child(3) { /* Date de Livraison */
+    width: 20%;
+  }
+  
+  .table th:nth-child(4), .table td:nth-child(4) { /* Statut */
+    width: 15%;
+  }
+  
+  .table th:nth-child(5), .table td:nth-child(5) { /* Actions */
+    width: 35%;
+  }
+  
+  /* Badge Styling */
+  .badge {
+    display: inline-block;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    text-transform: capitalize;
+    color: #000000; /* Black text for visibility */
+  }
+  
+  .badge-success {
+    background-color: #68D391; /* Olive green */
+  }
+  
+  .badge-warning {
+    background-color: #F6AD55; /* Amber */
+  }
+  
+  .badge-danger {
+    background-color: #F687B3; /* Coral */
+  }
+  
+  /* Action Buttons */
+  .action-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .btn-sm {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.8125rem;
+    border-radius: 5px;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    color: #000000; /* Black text for visibility */
+  }
+  
+  .btn-warning {
+    background-color: #F6AD55; /* Amber */
+  }
+  
+  .btn-warning:hover {
+    background-color: #ED8936; /* Darker amber */
+  }
+  
+  .btn-danger {
+    background-color: #F687B3; /* Coral */
+  }
+  
+  .btn-danger:hover {
+    background-color: #ED64A6; /* Darker coral */
+  }
+  
+  button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  button i {
+    font-size: 0.875rem;
+  }
+  
+  /* Alert Styling */
+  .alert {
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .alert-danger {
+    background-color: #FFF5F7; /* Pale coral */
+    color: #000000; /* Black text for readability */
+    border: 1px solid #F687B3; /* Coral border */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .container {
+      padding: 1rem;
+    }
+  
+    .header {
+      flex-direction: column;
+      gap: 0.75rem;
+      text-align: center;
+    }
+  
+    .chart-section {
+      max-width: 250px;
+    }
+  
+    .table th, .table td {
+      padding: 0.5rem;
+    }
+  
+    .sidebar {
+      width: 180px;
+    }
+  
+    .main {
+      margin-left: 180px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .header h2 {
+      font-size: 1.375rem;
+    }
+  
+    .btn-add {
+      width: 100%;
+      justify-content: center;
+      padding: 0.5rem 1rem;
+    }
+  
+    .chart-section {
+      max-width: 100%;
+    }
+  
+    .chart-section canvas {
+      max-height: 120px !important;
+    }
+  
+    .table {
+      font-size: 0.8125rem;
+    }
+  
+    .table th, .table td {
+      padding: 0.4rem;
+    }
+  
+    .action-buttons {
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+  
+    .btn-sm {
+      width: 100%;
+      justify-content: center;
+    }
+  
+    .card-body {
+      padding: 0.75rem;
+    }
+  
+    .sidebar {
+      width: 60px;
+    }
+  
+    .main {
+      margin-left: 60px;
+    }
+  
+    .sidebar .logo, .sidebar ul li a span {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .container {
+      padding: 0.75rem;
+    }
+  
+    .header h2 {
+      font-size: 1.25rem;
+    }
+  
+    .table-responsive {
+      font-size: 0.75rem;
+    }
+  
+    .table th, .table td {
+      padding: 0.3rem;
+    }
+  
+    .badge {
+      padding: 0.3rem 0.7rem;
+      font-size: 0.6875rem;
+    }
+  
+    .btn-sm {
+      padding: 0.3rem 0.7rem;
+      font-size: 0.75rem;
+    }
+    .filter-section {
+      display: flex;
+      align-items: center;
+    }
+    
+    .form-select {
+      max-width: 200px;
+    }
+  }

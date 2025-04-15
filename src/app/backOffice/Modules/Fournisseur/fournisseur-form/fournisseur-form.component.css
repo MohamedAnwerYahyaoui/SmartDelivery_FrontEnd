@@ -1,0 +1,247 @@
+
+/* Définir les variables de couleur */
+:root {
+    --primary-orange: #F28C38;
+    --primary-orange-light: rgba(242, 140, 56, 0.1);
+    --primary-salmon: #FF6B4A;
+    --white: #FFFFFF;
+    --black: #1A1A1A;
+    --dark-black: #121212;
+    --gray-100: #F5F5F5;
+    --gray-200: #E0E0E0;
+    --gray-300: #CCCCCC;
+    --gray-400: #999999;
+    --gray-700: #4A4A4A;
+    --gray-900: #2A2A2A;
+    --salmon-dark: #E65A3F;
+}
+
+/* Style pour le formulaire d'ajout/modification */
+.main .card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1), 
+                box-shadow 0.3s ease;
+    border: none;
+}
+
+.main .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+    background-color: var(--dark-black);
+    color: var(--white);
+    padding: 1.5rem 2rem;
+    border-bottom: none;
+    position: relative;
+}
+
+.card-header h2 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+.card-header:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-orange), var(--primary-salmon));
+}
+
+.card-body {
+    padding: 2.5rem 2rem;
+    background-color: var(--white);
+}
+
+/* Styles des formulaires */
+.form-group {
+    margin-bottom: 1.75rem;
+    position: relative;
+}
+
+.form-label {
+    font-weight: 500;
+    color: var(--gray-900);
+    margin-bottom: 0.75rem;
+    display: block;
+    font-size: 0.95rem;
+}
+
+.form-control {
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    padding: 0.875rem 1.25rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: var(--white);
+    color: var(--black);
+    box-shadow: none;
+    height: auto;
+}
+
+.form-control:focus {
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 0 1px var(--primary-orange);
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: var(--gray-400);
+    opacity: 1;
+}
+
+/* Validation des champs */
+.is-invalid {
+    border-color: #FF4444 !important;
+}
+
+.invalid-feedback {
+    color: #FF4444;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    display: block;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
+
+.is-invalid ~ .invalid-feedback {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Alertes */
+.alert {
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+    border: none;
+    font-size: 0.95rem;
+}
+
+.alert-info {
+    background-color: var(--primary-orange-light);
+    color: var(--primary-orange);
+    border-left: 4px solid var(--primary-orange);
+}
+
+.alert-danger {
+    background-color: rgba(255, 68, 68, 0.1);
+    color: #FF4444;
+    border-left: 4px solid #FF4444;
+}
+
+/* Boutons */
+.form-actions {
+    margin-top: 2.5rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--gray-200);
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    font-weight: 600;
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    min-width: 140px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    letter-spacing: 0.5px;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+}
+
+.btn-primary {
+    background-color: var(--black);
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(26, 26, 26, 0.15);
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-black);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(26, 26, 26, 0.25);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary:disabled {
+    background-color: var(--gray-400);
+    transform: none;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid var(--gray-300);
+    color: var(--gray-700);
+}
+
+.btn-secondary:hover {
+    background-color: var(--gray-100);
+    border-color: var(--gray-400);
+    color: var(--black);
+}
+
+/* Animation du spinner */
+.spinner-border {
+    vertical-align: middle;
+    margin-right: 0.75rem;
+    color: var(--white);
+    border-width: 0.15em;
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+/* Effet de vague au clic */
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.btn-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1.75rem 1.5rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
